@@ -31,7 +31,7 @@ const Header = () => {
         <div>
             <Navbar bg="dark" variant="dark" className='text-white'>
                 <Container>
-                    <Link to="/home" className='navbar-start nav-link fw-bold'>Cheaf</Link>
+                    <Link to="/" className='navbar-start nav-link fw-bold'>Cheaf</Link>
                     <Nav className="ms-auto ">
                         <Link className='nav-link' to="/">Home</Link>
                         <Link className='nav-link' to="/blog">Blog</Link>

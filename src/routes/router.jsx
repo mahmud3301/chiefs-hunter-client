@@ -13,24 +13,24 @@ import Blog from '../pages/Blog';
 const router = createBrowserRouter([
     {
         path: "/",
-        element: <Layout/>,
-        errorElement: <Error/>,
+        element: <Layout />,
+        errorElement: <Error />,
         children: [
             {
                 path: "/",
-                element: <Home/>,
+                element: <Home />,
             },
             {
                 path: "/login",
-                element: <Login/>
+                element: <Login />
             },
             {
                 path: "/register",
-                element: <Register/>
+                element: <Register />
             },
             {
                 path: "/blog",
-                element: <Blog/>
+                element: <Blog />
             },
         ]
     },
