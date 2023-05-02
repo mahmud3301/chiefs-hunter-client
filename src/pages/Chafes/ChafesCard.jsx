@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Button, Card, Row, Col, Container } from 'react-bootstrap';
-import { BiLike } from "@react-icons/all-files/Bi/BiLike";
+// import { BiLike } from "@react-icons/all-files/Bi/BiLike";
 
 const ChafesCard = () => {
     const [chefs, setChefs] = useState([]);
@@ -37,7 +37,7 @@ const ChafesCard = () => {
                                     <Card.Footer className="text-muted" style={{ display: 'flex', justifyContent: 'space-between' }} >
                                         <div className='mt-3 d-flex'>
                                             <p className='mt-2 d-flex'>
-                                                <BiLike className='mt-1'/> {chef.likes}
+                                                {chef.likes}
                                             </p>
                                             <Button className='ms-4'>Show Recipes</Button>
                                         </div>
