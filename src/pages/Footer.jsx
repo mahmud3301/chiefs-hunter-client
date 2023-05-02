@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 const Footer = () => {
     return (
-        <footer className="bg-dark text-white py-4">
+        <footer style={{backgroundColor : '#000'}} className="text-white py-4">
             <div className="container">
                 <div className="row">
                     <div className="col-md-6">
@@ -32,7 +32,7 @@ const Footer = () => {
                     </div>
                 </div>
             </div>
-            <div className="bg-dark text-center py-2">
+            <div className="text-center py-2">
                 <div className="container">
                     <p className="mb-0">© 2023 Chiefs. All rights reserved.</p>
                 </div>

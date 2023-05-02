@@ -9,7 +9,7 @@ const ChafesCard = () => {
     const [chefs, setChefs] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:7000/cheaf')
+        fetch('https://cheaf-server-n7fpa22wk-mahmud3301.vercel.app/cheaf')
             .then(response => response.json())
             .then(data => setChefs(data));
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -17,7 +17,7 @@ const ChafesCard = () => {
 
     return (
         <><br /><br /><br /><br />
-            <Container>
+            <div className='p-5'>
                 <h1 className='text-center'>Our Chiefs</h1>
                 <hr className='mx-auto w-25 justify-center text-success' /><br /><br />
                 <Row className='row d-flex justify-content-between'>
@@ -39,7 +39,7 @@ const ChafesCard = () => {
                                             <p className='mt-2 d-flex'>
                                                 <BiLike className='mt-1'/> {chef.likes}
                                             </p>
-                                            <Button className='ms-3'>Show All Recipes</Button>
+                                            <Button className='ms-4'>Show Recipes</Button>
                                         </div>
                                     </Card.Footer>
                                 </Card.Body>
@@ -47,7 +47,7 @@ const ChafesCard = () => {
                         </Col>
                     ))}
                 </Row>
-            </Container>
+            </div>
         </>
     );
 };

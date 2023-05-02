@@ -15,7 +15,7 @@ const OurSections = () => {
             <div>
                 <h1 className='text-center'>Our Top Sections</h1>
                 <hr className='mx-auto text-center w-25 text-success'/>
-            </div>
+            </div><br /><br />
             <Carousel activeIndex={index} onSelect={handleSelect}>
                 <Carousel.Item>
                     <div className="position-relative">
@@ -95,8 +95,12 @@ const OurSections = () => {
                         <p>You can visit here for enjoy</p>
                     </Carousel.Caption>
                 </Carousel.Item>
+            </Carousel><br /><br />
 
-            </Carousel><br />
+            <div>
+                <h1 className='text-center'>That's not all</h1>
+                <h3 className='text-center'>There is also a lot of sections of us in the world</h3>
+            </div> <br /><br />
         </div>
     );
 };
