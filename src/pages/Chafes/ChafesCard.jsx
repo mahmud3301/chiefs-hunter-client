@@ -17,7 +17,7 @@ const ChafesCard = () => {
 
     return (
         <><br /><br /><br /><br />
-            <div className='p-5'>
+            <div className='px-5'>
                 <h1 className='text-center'>Our Chiefs</h1>
                 <hr className='mx-auto w-25 justify-center text-success' /><br /><br />
                 <Row className='row d-flex justify-content-between'>

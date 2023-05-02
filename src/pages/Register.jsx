@@ -94,7 +94,6 @@ const Register = () => {
                 <button className='w-100 mt-4 btn btn-outline-danger' onClick={handleGoogleRegister}>
                     <IoLogoGoogle className='mb-1'/> Register with Google
                 </button><br />
-
                 <button className='w-100 mt-2 btn btn-outline-secondary' onClick={handleGithubRegister}>
                     <IoLogoGithub className='mb-1' /> Register with Github
                 </button>

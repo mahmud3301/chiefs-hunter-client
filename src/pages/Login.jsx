@@ -6,6 +6,9 @@ import { Link } from 'react-router-dom';
 import { IoLogoGoogle, IoLogoGithub } from 'react-icons/io';
 import { GithubAuthProvider, GoogleAuthProvider, getAuth, signInWithPopup, signOut } from "firebase/auth";
 import app from '../firebase/firebase.config';
+import { useContext } from 'react';
+import { AuthContext } from '../provider/AuthProvider';
+import { useState } from 'react';
 
 const Login = () => {
     const auth = getAuth(app);
@@ -33,24 +36,44 @@ const Login = () => {
             });
     }
 
+    const { loginUser } = useContext(AuthContext);
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [error, setError] = useState("");
 
+    const handleLogin = (e) => {
+        e.preventDefault();
+        if (!email || !password) {
+            setError("Please fill all the fields");
+            return;
+        }
+        loginUser(email, password)
+            .then((result) => {
+                const user = result.user;
+                console.log(user);
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+    }
     return (
         <div className='mx-auto w-25 mt-5'>
             <h1 className='text-center mb-5'>Please Login</h1>
             <Form>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Email address</Form.Label>
-                    <Form.Control type="email" placeholder="Enter email" />
+                    <Form.Control type="email" placeholder="Enter email" onChange={(e) => setEmail(e.target.value)} required/>
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="formBasicPassword">
                     <Form.Label>Password</Form.Label>
-                    <Form.Control type="password" placeholder="Password" />
+                    <Form.Control type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} required/>
                 </Form.Group>
+                <p>{error}</p>
                 <Form.Text className="text-muted">
                    Don't have an account? <Link to="/register">Register</Link>
                 </Form.Text>
-                <button className='w-100 mt-3 btn btn-outline-success' type="submit">
+                <button className='w-100 mt-3 btn btn-outline-success' type="submit" onClick={handleLogin}>
                     Submit
                 </button>
             </Form>
