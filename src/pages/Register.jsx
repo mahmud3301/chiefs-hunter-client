@@ -6,6 +6,9 @@ import { Link } from 'react-router-dom';
 import { IoLogoGoogle, IoLogoGithub } from 'react-icons/io';
 import { GithubAuthProvider, GoogleAuthProvider, getAuth, signInWithPopup, signOut } from "firebase/auth";
 import app from '../firebase/firebase.config';
+import { useContext } from 'react';
+import { AuthContext } from '../provider/AuthProvider';
+import { useState } from 'react';
 
 const Register = () => {
     const auth = getAuth(app);
@@ -32,6 +35,28 @@ const Register = () => {
                 console.error(error);
             });
     }
+    const { registerUser } = useContext(AuthContext);
+
+    const [email, setEmail] = useState("");
+    const [name, setName] = useState("");
+    const [password, setPassword] = useState("");
+    const [error, setError] = useState("");
+
+    const handleRegistration = (e) => {
+        e.preventDefault();
+        if (!name || !email || !password) {
+            setError("Please fill all the fields");
+            return;
+        }
+        registerUser(name, email, password)
+            .then((result) => {
+                const user = result.user;
+                console.log(user);
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+    };
     return (
         <div>
             <div className='mx-auto w-25 mt-5'>
@@ -39,29 +64,29 @@ const Register = () => {
                 <Form>
                     <Form.Group className="mb-3" controlId="formBasicName">
                         <Form.Label>Name</Form.Label>
-                        <Form.Control type="text" placeholder="Enter your name" />
+                        <Form.Control type="text" placeholder="Enter your name" onChange={(e) => setName(e.target.value)} required/>
                     </Form.Group>
 
                     <Form.Group className="mb-3" controlId="formBasicEmail">
                         <Form.Label>Email address</Form.Label>
-                        <Form.Control type="email" placeholder="Enter email" />
+                        <Form.Control type="email" placeholder="Enter email" onChange={(e) => setEmail(e.target.value)} required />
                     </Form.Group>
 
                     <Form.Group className="mb-3" controlId="formBasicPassword">
                         <Form.Label>Password</Form.Label>
-                        <Form.Control type="password" placeholder="Password" />
+                        <Form.Control type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} required />
                     </Form.Group>
 
                     <Form.Group className="mb-3" controlId="formBasicPhotoURL">
                         <Form.Label>Photo URL</Form.Label>
-                        <Form.Control type="url" placeholder="Enter photo URL" />
+                        <Form.Control type="url" placeholder="Enter photo URL" required />
                     </Form.Group>
 
                     <Form.Text className="text-muted">
                         Already have an account? <Link to="/login">Login</Link>
                     </Form.Text>
-
-                    <button className='w-100 mt-3 btn btn-outline-success' type="submit">
+                    <p>{error}</p>
+                    <button className='w-100 mt-3 btn btn-outline-success' type="submit" onClick={handleRegistration}>
                         Submit
                     </button>
                 </Form>
