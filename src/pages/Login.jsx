@@ -19,7 +19,7 @@ const Login = () => {
             .then((result) => {
                 const user = result.user;
                 console.log(user);
-                navigate("/cheafs");
+                navigate("/");
             })
             .catch((error) => {
                 console.error(error);
@@ -32,7 +32,7 @@ const Login = () => {
         .then((result) => {
             const user = result.user;
             console.log(user);
-            navigate("/cheafs");
+            navigate("/");
             })
             .catch((error) => {
                 console.error(error);
@@ -56,7 +56,7 @@ const Login = () => {
                 const user = result.user;
                 console.log(user);
                 form.reset();
-                navigate("/cheafs");
+                navigate("/");
             })
             .catch((error) => {
                 console.error(error);

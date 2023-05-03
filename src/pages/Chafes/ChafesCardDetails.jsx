@@ -4,10 +4,14 @@ import { useLoaderData } from 'react-router-dom';
 import { MdFavorite } from 'react-icons/md';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from 'react-toastify';
 
 const ChafesCardDetails = () => {
     const cheafs = useLoaderData();
     const [imgLoad, setImgLoad] = useState(false);
+    const [favoriteRecipes, setFavoriteRecipes] = useState([]);
 
     useEffect(() => {
         const img = new Image();
@@ -17,6 +21,28 @@ const ChafesCardDetails = () => {
         img.src = cheafs.chef_picture;
     }, [cheafs.chef_picture]);
 
+    const handleFavoriteClick = (recipeId) => {
+        // Find the recipe by its ID
+        const recipe = cheafs.recipes.find((recipe) => recipe.id === recipeId);
+
+        // Update the favorite status of the recipe
+        const updatedRecipe = { ...recipe, favorite: true };
+
+        // Update the favoriteRecipes state with the updated recipe
+        setFavoriteRecipes([...favoriteRecipes, updatedRecipe]);
+
+        // Show the toast message
+        toast.success(`"${recipe.recipe_name}" is now your favorite recipe!`);
+
+        // Disable the button (optional, you can choose to hide it or update the recipe object instead)
+        const buttons = document.getElementsByClassName('favorite-button');
+        for (let i = 0; i < buttons.length; i++) {
+            buttons[i].disabled = true;
+        }
+    };
+
+
+
     return (
         <div>
             <div className="container">
@@ -25,6 +51,7 @@ const ChafesCardDetails = () => {
                 <br />
                 <br />
                 <br />
+                <ToastContainer />
                 <div className="row mt-5">
                     <div className="col-md-6">
                         <div className="card">
@@ -73,7 +100,11 @@ const ChafesCardDetails = () => {
                                                 <td>{recipe.cooking_method}</td>
                                                 <td>{recipe.rating}</td>
                                                 <td>
-                                                    <button className="btn btn-outline-success">
+                                                    <button
+                                                        className="btn btn-outline-success favorite-button"
+                                                        onClick={() => handleFavoriteClick(recipe.id)}
+                                                        disabled={recipe.favorite} // Disable the button if the recipe is already a favorite
+                                                    >
                                                         <MdFavorite />
                                                     </button>
                                                 </td>
