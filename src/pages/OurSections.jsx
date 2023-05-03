@@ -11,7 +11,7 @@ const OurSections = () => {
         setIndex(selectedIndex);
     };
     return (
-        <div>
+        <div id='section'><br /><br /><br /><br /><br /><br />
             <div>
                 <h1 className='text-center'>Our Top Sections</h1>
                 <hr className='mx-auto text-center w-25 text-success'/>

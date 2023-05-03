@@ -10,6 +10,10 @@ import Login from '../pages/Login';
 import Register from '../pages/Register';
 import Blog from '../pages/Blog';
 import ChafesCardDetails from '../pages/Chafes/ChafesCardDetails';
+import PrivateRoute from './PrivateRoute';
+import ChafesCard from '../pages/Chafes/ChafesCard';
+import Dishes from '../pages/Dishes';
+import OurSections from '../pages/OurSections';
 
 const router = createBrowserRouter([
     {
@@ -34,13 +38,9 @@ const router = createBrowserRouter([
                 element: <Blog />
             },
             {
-                path: "/cheafs",
-                element: <Home />
-            },
-            {
                 path: "/cheafs/:id",
-                element: <ChafesCardDetails/>,
-                loader: ({ params }) => fetch(`http://localhost:7000/cheaf/${params.id}`)
+                element: <PrivateRoute><ChafesCardDetails /></PrivateRoute>,
+                loader: ({ params }) => fetch(`https://cheaf-server-mahmud3301.vercel.app/cheaf/${params.id}`)
             }
         ]
     },

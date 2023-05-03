@@ -4,8 +4,8 @@ import React from 'react';
 
 const Dishes = () => {
     return (
-        <div className='container'>
-            <br /><br />
+        <div className='container' id='foods'>
+            <br /><br /><br /><br /><br /><br />
             <div>
                 <h1 className='text-center'>Our Dishes</h1>
                 <hr className='mx-auto text-success text-center w-25' />

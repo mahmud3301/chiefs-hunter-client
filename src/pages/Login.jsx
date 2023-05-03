@@ -1,8 +1,9 @@
+/* eslint-disable no-undef */
 /* eslint-disable react/no-unescaped-entities */
 /* eslint-disable no-unused-vars */
 import React, { useContext, useState } from 'react';
 import { Form } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { IoLogoGoogle, IoLogoGithub } from 'react-icons/io';
 import { GithubAuthProvider, GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
 import app from '../firebase/firebase.config';
@@ -18,27 +19,31 @@ const Login = () => {
             .then((result) => {
                 const user = result.user;
                 console.log(user);
+                navigate("/cheafs");
             })
             .catch((error) => {
                 console.error(error);
             });
     };
 
+    
     const handleGithubLogin = () => {
         signInWithPopup(auth, githubProvider)
-            .then((result) => {
-                const user = result.user;
-                console.log(user);
+        .then((result) => {
+            const user = result.user;
+            console.log(user);
+            navigate("/cheafs");
             })
             .catch((error) => {
                 console.error(error);
             });
-    };
+        };
 
     const { loginUser } = useContext(AuthContext);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
+    const navigate = useNavigate();
 
     const handleLogin = (e) => {
         e.preventDefault();
@@ -50,6 +55,8 @@ const Login = () => {
             .then((result) => {
                 const user = result.user;
                 console.log(user);
+                form.reset();
+                navigate("/cheafs");
             })
             .catch((error) => {
                 console.error(error);
