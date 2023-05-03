@@ -2,12 +2,15 @@
 import React, { useState } from 'react';
 import { Button, Container, Nav, Navbar, OverlayTrigger, Tooltip } from 'react-bootstrap';
 import { Link as ScrollLink, animateScroll as scroll } from 'react-scroll';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { useContext } from 'react';
 import { AuthContext } from '../provider/AuthProvider';
+import { useEffect } from 'react';
 
 const Header = () => {
     const { user, logOut } = useContext(AuthContext);
+    const location = useLocation();
+    const [activeRoute, setActiveRoute] = useState(location.pathname);
 
     const handleLogOut = () => {
         logOut()
@@ -29,42 +32,42 @@ const Header = () => {
         return <Tooltip id="tooltip">{user.displayName}</Tooltip>;
     };
 
-    const scrollToTop = () => {
-        scroll.scrollToTop();
-    };
+    useEffect(() => {
+        setActiveRoute(location.pathname);
+    }, [location]);
 
     return (
         <div>
             <Navbar bg="dark" variant="dark" className="text-white fixed-top" expand="lg">
                 <Container>
-                    <lLink
+                    <Link
                         to="/"
                         className="navbar-start nav-link fw-bold"
                     >
                         Cheaf
-                    </lLink>
+                    </Link>
                     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                     <Navbar.Collapse id="responsive-navbar-nav">
                         <Nav className="mx-auto">
-                            <Link to="/" className="nav-link">
+                            <Link to="/" className={`nav-link ${activeRoute === '/' ? 'active' : ''}`}>
                                 Home
                             </Link>
                             <ScrollLink
                                 to="cheafs"
                                 smooth={true}
                                 duration={50}
-                                className="nav-link"
+                                className={`nav-link ${activeRoute === '/' ? 'active' : ''}`}
                             >
                                 Chiefs
                             </ScrollLink>
-                            <Link to="/blog" className="nav-link">
+                            <Link to="/blog" className={`nav-link ${activeRoute === '/blog' ? 'active' : ''}`}>
                                 Blog
                             </Link>
                             <ScrollLink
                                 to="foods"
                                 smooth={true}
                                 duration={50}
-                                className="nav-link"
+                                className={`nav-link ${activeRoute === '/' ? 'active' : ''}`}
                             >
                                 Top Foods
                             </ScrollLink>
@@ -72,7 +75,7 @@ const Header = () => {
                                 to="section"
                                 smooth={true}
                                 duration={50}
-                                className="nav-link"
+                                className={`nav-link ${activeRoute === '/' ? 'active' : ''}`}
                             >
                                 Sections
                             </ScrollLink>
@@ -107,6 +110,19 @@ const Header = () => {
                     </Navbar.Collapse>
                 </Container>
             </Navbar>
+            <style>
+                {`
+                .nav-link.active {
+                    animation: bounce 0.5s;
+                }
+                
+                @keyframes bounce {
+                    0% { transform: scale(1); }
+                    50% { transform: scale(1.2); }
+                    100% { transform: scale(1); }
+                }
+                `}
+            </style>
         </div>
     );
 };

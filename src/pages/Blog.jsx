@@ -67,6 +67,3 @@ const Blog = () => {
 };
 
 export default Blog;
-
-// const rootElement = document.getElementById("root");
-// ReactDOM.render(<Blog />, rootElement);

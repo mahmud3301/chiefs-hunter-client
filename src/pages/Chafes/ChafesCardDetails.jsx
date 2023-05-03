@@ -1,12 +1,11 @@
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
-import { MdFavorite } from 'react-icons/md';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
-import { toast } from 'react-toastify';
+import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { ToastContainer } from 'react-toastify';
+import FavoriteButton from './FavoriteButton';
 
 const ChafesCardDetails = () => {
     const cheafs = useLoaderData();
@@ -22,26 +21,9 @@ const ChafesCardDetails = () => {
     }, [cheafs.chef_picture]);
 
     const handleFavoriteClick = (recipeId) => {
-        // Find the recipe by its ID
-        const recipe = cheafs.recipes.find((recipe) => recipe.id === recipeId);
-
-        // Update the favorite status of the recipe
-        const updatedRecipe = { ...recipe, favorite: true };
-
-        // Update the favoriteRecipes state with the updated recipe
-        setFavoriteRecipes([...favoriteRecipes, updatedRecipe]);
-
-        // Show the toast message
-        toast.success(`"${recipe.recipe_name}" is now your favorite recipe!`);
-
-        // Disable the button (optional, you can choose to hide it or update the recipe object instead)
-        const buttons = document.getElementsByClassName('favorite-button');
-        for (let i = 0; i < buttons.length; i++) {
-            buttons[i].disabled = true;
-        }
+        setFavoriteRecipes([...favoriteRecipes, recipeId]);
+        toast.success(`Added to favorite recipe!`);
     };
-
-
 
     return (
         <div>
@@ -53,26 +35,28 @@ const ChafesCardDetails = () => {
                 <br />
                 <ToastContainer />
                 <div className="row mt-5">
-                    <div className="col-md-6">
-                        <div className="card">
-                            <LazyLoadImage
-                                src={cheafs.chef_picture}
-                                className="card-img-top"
-                                loading="lazy"
-                                effect="blur"
-                                alt="Chef"
-                                placeholderSrc={cheafs.blurhash} // Add the blurhash as the placeholder image source
-                            />
+                    <div className="row mt-5">
+                        <div className="col-md-6">
+                            <div className="card">
+                                <LazyLoadImage
+                                    src={cheafs.chef_picture}
+                                    className="card-img-top"
+                                    loading="lazy"
+                                    effect="blur"
+                                    alt="Chef"
+                                    placeholderSrc={cheafs.blurhash}
+                                />
+                            </div>
                         </div>
-                    </div>
-                    <div className="col-md-6">
-                        <div className="card">
-                            <div className="card-body">
-                                <h5 className="card-title">{cheafs.chef_name}</h5>
-                                <p className="card-text">{cheafs.bio}</p>
-                                <p>Likes: {cheafs.likes}</p>
-                                <p>Number of Recipes: {cheafs.num_of_recipes}</p>
-                                <p>Years of Experience: {cheafs.years_of_experience}</p>
+                        <div className="col-md-6">
+                            <div className="card">
+                                <div className="card-body">
+                                    <h5 className="card-title">{cheafs.chef_name}</h5>
+                                    <p className="card-text">{cheafs.bio}</p>
+                                    <p>Likes: {cheafs.likes}</p>
+                                    <p>Number of Recipes: {cheafs.num_of_recipes}</p>
+                                    <p>Years of Experience: {cheafs.years_of_experience}</p>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -100,13 +84,11 @@ const ChafesCardDetails = () => {
                                                 <td>{recipe.cooking_method}</td>
                                                 <td>{recipe.rating}</td>
                                                 <td>
-                                                    <button
-                                                        className="btn btn-outline-success favorite-button"
-                                                        onClick={() => handleFavoriteClick(recipe.id)}
-                                                        disabled={recipe.favorite} // Disable the button if the recipe is already a favorite
-                                                    >
-                                                        <MdFavorite />
-                                                    </button>
+                                                    <FavoriteButton
+                                                        recipe={recipe}
+                                                        favoriteRecipes={favoriteRecipes}
+                                                        onFavoriteClick={handleFavoriteClick}
+                                                    />
                                                 </td>
                                             </tr>
                                         ))}

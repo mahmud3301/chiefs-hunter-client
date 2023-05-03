@@ -1,12 +1,13 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/no-unescaped-entities */
 import React from 'react';
+import { Container } from 'react-bootstrap';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 
 const Dishes = () => {
     return (
-        <div className="container" id="foods">
+        <Container id="foods">
             <br />
             <br />
             <br />
@@ -69,7 +70,7 @@ const Dishes = () => {
             <br />
             <br />
             <br />
-        </div>
+        </Container>
     );
 };
 
