@@ -10,7 +10,7 @@ const ref = React.createRef();
 const Blog = () => {
     return (
         <Container>
-            <div>
+            <div><br /><br /><br /><br /><br /><br />
                 <div ref={ref}>
                     <div className="row">
                         <div className="col-md-6">

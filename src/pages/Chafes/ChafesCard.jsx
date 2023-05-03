@@ -3,13 +3,13 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Button, Card, Row, Col, Container } from 'react-bootstrap';
-// import { BiLike } from "@react-icons/all-files/Bi/BiLike";
+import { BiLike } from 'react-icons/bi';
 
 const ChafesCard = () => {
     const [chefs, setChefs] = useState([]);
 
     useEffect(() => {
-        fetch('https://cheaf-server-n7fpa22wk-mahmud3301.vercel.app/cheaf')
+        fetch('https://cheaf-server-mahmud3301.vercel.app/cheaf')
             .then(response => response.json())
             .then(data => setChefs(data));
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -17,7 +17,7 @@ const ChafesCard = () => {
 
     return (
         <><br /><br /><br /><br />
-            <div className='px-5'>
+            <Container>
                 <h1 className='text-center'>Our Chiefs</h1>
                 <hr className='mx-auto w-25 justify-center text-success' /><br /><br />
                 <Row className='row d-flex justify-content-between'>
@@ -37,9 +37,9 @@ const ChafesCard = () => {
                                     <Card.Footer className="text-muted" style={{ display: 'flex', justifyContent: 'space-between' }} >
                                         <div className='mt-3 d-flex'>
                                             <p className='mt-2 d-flex'>
-                                                {chef.likes}
+                                                <BiLike className='mt-1'/>{chef.likes}
                                             </p>
-                                            <Button className='ms-4'>Show Recipes</Button>
+                                            <Link to={`/cheafs/${chef.id}`}><Button className='ms-4'>Show Recipes</Button></Link>
                                         </div>
                                     </Card.Footer>
                                 </Card.Body>
@@ -47,7 +47,7 @@ const ChafesCard = () => {
                         </Col>
                     ))}
                 </Row>
-            </div>
+            </Container>
         </>
     );
 };

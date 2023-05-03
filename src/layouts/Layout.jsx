@@ -10,7 +10,7 @@ const Layout = () => {
             <Header/>
             <div className='min-vh-100'>
                 <Outlet />
-            </div>
+            </div><br /><br />
             <Footer/>
         </div>
     );

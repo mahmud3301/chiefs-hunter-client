@@ -66,6 +66,7 @@ const Register = () => {
     return (
         <div>
             <div className='mx-auto w-25 mt-5'>
+                <br /><br />
                 <h1 className='text-center mb-5'>Please Register</h1>
                 <p className="text-danger">{error}</p>
                 <p className="text-danger">{errorMassage}</p>
