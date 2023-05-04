@@ -2,7 +2,6 @@
 /* eslint-disable react/prop-types */
 import React, { useState } from 'react';
 import { MdFavorite } from 'react-icons/md';
-import { toast } from 'react-toastify';
 
 const FavoriteButton = ({ recipe, onFavoriteClick }) => {
     const [disabled, setDisabled] = useState(false);

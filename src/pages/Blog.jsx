@@ -11,6 +11,18 @@ const Blog = () => {
     return (
         <Container>
             <div><br /><br /><br /><br /><br /><br />
+                <Pdf targetRef={ref} filename="code-example.pdf">
+                    {({ toPdf }) => (
+                        <div>
+                            <div className="col-md-12 text-center mt-4">
+                                <button className="btn btn-danger mx-auto" onClick={toPdf}>
+                                    <FaDownload className="me-3" />Download This Blog page
+                                </button>
+                            </div>
+                            <br /><br /><br />
+                        </div>
+                    )}
+                </Pdf>
                 <div ref={ref}>
                     <div className="row">
                         <div className="col-md-6">
@@ -49,18 +61,6 @@ const Blog = () => {
                         </div>
                     </div>
                 </div>
-                <Pdf targetRef={ref} filename="code-example.pdf">
-                    {({ toPdf }) => (
-                        <div>
-                            <div className="col-md-12 text-center mt-4">
-                                <button className="btn btn-danger mx-auto" onClick={toPdf}>
-                                    <FaDownload className="me-3" />Download This Blog
-                                </button>
-                            </div>
-                            <br /><br /><br />
-                        </div>
-                    )}
-                </Pdf>
             </div>
         </Container>
     );

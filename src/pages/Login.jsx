@@ -64,11 +64,12 @@ const Login = () => {
         loginUser(email, password)
             .then((result) => {
                 const user = result.user;
-                console.log(user);
-                form.reset
                 navigate(from, { replace: true });
+                console.log(user);
+                form.reset();
             })
             .catch((error) => {
+                setError("Invalid email or password");
                 console.error(error);
             });
     };
@@ -78,6 +79,7 @@ const Login = () => {
             <br /><br />
             <h1 className='text-center mb-5'>Please Login</h1>
             <Form>
+                {error && <p className="text-danger">{error}</p>}
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Email address</Form.Label>
                     <Form.Control type="email" placeholder="Enter email" onChange={(e) => setEmail(e.target.value)} required />

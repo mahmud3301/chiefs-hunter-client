@@ -31,7 +31,7 @@ const ChafesCard = () => {
                 <br />
                 <br />
                 {loading ? (
-                    <Spinner animation="border" variant="primary" className='mx-auto justify-item-center text-center'/>
+                    <Spinner animation="border" variant="primary" className='text-center'/>
                 ) : (
                     <Row className="row d-flex justify-content-between">
                         {chefs.map(chef => (
