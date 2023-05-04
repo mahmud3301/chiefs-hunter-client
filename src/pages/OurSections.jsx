@@ -2,7 +2,7 @@
 /* eslint-disable no-unused-vars */
 import React from 'react';
 import { useState } from 'react';
-import { Carousel } from 'react-bootstrap';
+import { Carousel , Container } from 'react-bootstrap';
 
 const OurSections = () => {
     const [index, setIndex] = useState(0);
@@ -11,7 +11,7 @@ const OurSections = () => {
         setIndex(selectedIndex);
     };
     return (
-        <div id='section'><br /><br /><br /><br /><br /><br />
+        <Container id='section'><br /><br /><br /><br /><br /><br />
             <div>
                 <h1 className='text-center'>Our Top Sections</h1>
                 <hr className='mx-auto text-center w-25 text-success'/>
@@ -101,7 +101,7 @@ const OurSections = () => {
                 <h1 className='text-center'>That's not all</h1>
                 <h3 className='text-center'>There is also a lot of sections of us in the world</h3>
             </div> <br /><br />
-        </div>
+        </Container>
     );
 };
 

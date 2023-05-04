@@ -39,7 +39,7 @@ const Home = () => {
                     </div>
                     <Carousel.Caption>
                         <h3>Burger With monies</h3>
-                        <p>Burger With monies wow its our CEO,s favorite</p>
+                        <p>Burger With monies wow its our CEO's favorite</p>
                     </Carousel.Caption>
                 </Carousel.Item>
                 <Carousel.Item>
