@@ -7,6 +7,7 @@ import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import FavoriteButton from './FavoriteButton';
 import { Spinner } from 'react-bootstrap';
+import Error from '../Error';
 
 const ChafesCardDetails = () => {
     const cheafs = useLoaderData();
@@ -23,10 +24,18 @@ const ChafesCardDetails = () => {
         setLoading(false);
     }, [cheafs.chef_picture]);
 
+
+
     const handleFavoriteClick = (recipeId) => {
         setFavoriteRecipes([...favoriteRecipes, recipeId]);
         toast.success(`Added to favorite recipe!`);
     };
+
+    if (!cheafs) {
+        return <div>
+            <Error/>
+        </div>
+    }
 
     return (
         <div>
@@ -98,7 +107,7 @@ const ChafesCardDetails = () => {
                                                                 recipe={recipe}
                                                                 favoriteRecipes={favoriteRecipes}></FavoriteButton>
                                                         </td>
-                                                        </tr>
+                                                    </tr>
                                                 ))}
                                         </tbody>
                                     </table>
